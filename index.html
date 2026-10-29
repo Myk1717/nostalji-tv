@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light"><meta name="theme-color" content="#e9e7ee"><title>Nostalji TV</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="favicon.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Nostalji TV"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e1dfe8;--card:#f6f5fa;--ink:#2f2d3f;--mut:#9a98ad;--acc:#9d8de6;--acc2:#4fb98a;--line:#d3cfe0;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media not all{:root{--bg:#16120e;--card:#211b15;--ink:#f1e7d8;--mut:#a8977f;--acc:#fb923c;--acc2:#5eead4;--line:#3a3025;color-scheme:dark}}
+:root[data-theme="none"]{--bg:#16120e;--card:#211b15;--ink:#f1e7d8;--mut:#a8977f;--acc:#fb923c;--acc2:#5eead4;--line:#3a3025;color-scheme:dark}
+html{background:linear-gradient(180deg,#e9e7ee 0%,#d9d6e1 100%);min-height:100%}body{background:transparent;min-height:100%}html{overscroll-behavior:none}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.4 Nunito,system-ui,-apple-system,Segoe UI,sans-serif;max-width:640px;margin:0 auto;padding:12px}
+h1{font:800 22px Georgia,serif;margin:4px 0 10px;letter-spacing:.5px}
+h1 span{color:var(--acc)}
+.tabs{display:flex;gap:6px;margin-bottom:12px}
+.tabs button{flex:1}
+button,select,input{font:inherit;color:var(--ink)}
+button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer}
+button.on,button.pri{background:var(--acc);color:#fff;border-color:var(--acc)}
+button.sm{padding:4px 8px;font-size:13px}
+input,select{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px;width:100%}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.grow{flex:1;min-width:0}
+.mut{color:var(--mut);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.dh{text-align:center;font-size:12px;color:var(--mut)}
+.day{aspect-ratio:1;border:1px solid var(--line);border-radius:10px;background:var(--card);padding:3px;font-size:13px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.day.sel{outline:2px solid var(--acc)}
+.day.today b{color:var(--acc)}
+.day small{font-size:10px;color:var(--acc2);line-height:1.1}
+.day.pass{opacity:.45}
+.slot{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}
+.slot:last-child{border:0}
+.time{font:700 14px ui-monospace,monospace;color:var(--acc);width:52px}
+.tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:99px;border:1px solid var(--line);margin:2px 4px 2px 0}
+a.tag{text-decoration:none;color:var(--ink)}a.tag.free{color:var(--acc2)}
+.poster{width:56px;height:84px;object-fit:cover;border-radius:8px;flex:none;border:1px solid var(--line)}
+.free{border-color:var(--acc2);color:var(--acc2)}
+.bar{height:6px;background:var(--line);border-radius:9px;overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--acc2)}
+.done{opacity:.55}
+.slot.wd{background:color-mix(in srgb,var(--acc2) 16%,transparent);border-radius:10px;padding:8px 8px;margin:2px 0;border:0}
+.slot .time{width:auto;font:600 12px system-ui,sans-serif;color:var(--acc)}
+.slot.wd .time{color:var(--acc2)}
+:root{--acc3:#f59e0b}
+.card{border:1px solid var(--line);border-radius:22px;box-shadow:0 6px 18px color-mix(in srgb,var(--acc) 12%,transparent)}
+button{border-radius:999px;border-color:transparent;font-weight:600}
+input,select{border-radius:14px}
+.hero{background:linear-gradient(135deg,var(--acc),color-mix(in srgb,var(--acc) 55%,#fff));border-radius:24px;padding:16px;margin-bottom:12px;box-shadow:0 8px 20px color-mix(in srgb,var(--acc) 25%,transparent)}
+.hero h1,.hero h1 span{color:#fff;margin:2px 0 0}.hero .hs{font-size:13px;color:#fff;opacity:.92}
+.hero button{background:rgba(255,255,255,.25);color:#fff}
+.day{border:0;border-radius:14px;box-shadow:0 2px 8px color-mix(in srgb,var(--acc) 10%,transparent)}
+.day.sel{outline:0;background:var(--acc);color:#fff}.day.sel small,.day.sel b{color:#fff!important}
+.av{width:42px;height:42px;border-radius:50%;overflow:hidden;background:color-mix(in srgb,var(--acc) 18%,var(--card));color:var(--acc);display:flex;align-items:center;justify-content:center;font-weight:800;flex:none}.av img{width:100%;height:100%;object-fit:cover}
+.pill{display:inline-block;font:700 10px system-ui,sans-serif;letter-spacing:.5px;padding:2px 8px;border-radius:99px;background:color-mix(in srgb,var(--acc) 16%,var(--card));color:var(--acc);margin-left:4px}.pill.ok{background:color-mix(in srgb,var(--acc2) 20%,var(--card));color:var(--acc2)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}.st{border-radius:20px;padding:12px 6px;text-align:center}.st b{display:block;font-size:22px}.st span{font-size:12px;color:var(--mut)}
+.st.a{background:color-mix(in srgb,var(--acc) 18%,var(--card))}.st.b{background:color-mix(in srgb,var(--acc2) 20%,var(--card))}.st.c{background:color-mix(in srgb,var(--acc3) 24%,var(--card))}
+.st.a{background:#ece8fb}.st.b{background:#e4edfc}.st.c{background:#fdebdc}
+[hidden]{display:none!important}
+body{padding-bottom:96px}
+.hero{margin:-12px -12px 14px;padding:16px 16px 20px;border-radius:0 0 28px 28px;background:linear-gradient(180deg,#b7aaee,#d3caf6);box-shadow:none}
+.ht{text-align:center;color:#fff;font-weight:700;margin-bottom:14px}.hb{color:#fff;font-size:21px;font-weight:700;margin:2px 0 12px}
+.hcard{background:#f6f5fa;border-radius:20px;padding:14px;box-shadow:0 4px 16px rgba(120,100,200,.15)}
+.hcard button{background:var(--acc);color:#fff;width:100%;margin-top:10px;letter-spacing:1px;font-size:13px;padding:11px}
+.tabs{position:fixed;left:0;right:0;bottom:0;margin:0;padding:8px 24px calc(8px + env(safe-area-inset-bottom,0px));background:#eeecf4;border-top:1px solid var(--line);display:flex;justify-content:space-around;z-index:20;box-shadow:0 -4px 16px rgba(120,100,200,.08)}
+.tabs button{flex:none;background:none;border:0;color:var(--mut);display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;padding:4px 18px}.tabs button.on{background:none;color:var(--acc)}
+.wk-h{display:flex;align-items:center;gap:8px;margin:6px 0 10px}.wk-h b{flex:1;font-size:16px}
+.wk{display:flex;gap:7px;margin-bottom:14px;align-items:flex-end}
+.wd1{flex:1;min-width:0;background:#f6f5fa;border:1px solid var(--line);border-radius:14px;padding:8px 0 6px;display:flex;flex-direction:column;align-items:center;gap:2px;box-shadow:0 2px 8px rgba(130,110,210,.08)}
+.wd1 b{font-size:16px}.wd1 span{font-size:11px;color:var(--mut)}.wd1 i{font-style:normal;color:var(--acc);height:10px;line-height:10px;font-size:14px}
+.wd1.sel{background:var(--acc);border-color:var(--acc);color:#fff;padding:13px 0 11px}.wd1.sel span,.wd1.sel i{color:#fff}
+.rt{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.st2{font:700 10px Nunito,system-ui,sans-serif;letter-spacing:.8px;color:var(--acc)}.st2.or{color:var(--acc3)}
+#add{text-transform:uppercase;letter-spacing:1px;font-size:13px}
+.slot{background:linear-gradient(135deg,#a99be8,#cdc3f4);border:0;border-radius:18px;padding:10px 12px;margin:0 0 8px;color:#fff;box-shadow:0 4px 12px rgba(150,130,225,.25)}
+.slot .mut{color:rgba(255,255,255,.9)}.slot .time{color:#fff}
+.slot .av{background:rgba(255,255,255,.3);color:#fff}
+.slot .st2,.slot .st2.or{color:#fff}.slot .st2.or{color:#fff1de}
+.slot .sm.pri{background:#fff;color:var(--acc)}
+.slot a.tag,.slot a.tag.free{background:rgba(255,255,255,.25);color:#fff;border-color:transparent}
+.slot.wd{background:linear-gradient(135deg,#bfe6d4,#e0f4ea);color:var(--ink);box-shadow:0 4px 12px rgba(80,170,130,.15)}
+.slot.wd .mut{color:var(--mut)}.slot.wd .time,.slot.wd .st2{color:var(--acc2)}
+.slot.wd .av{background:#fff;color:var(--acc2)}.slot.wd .sm{background:#fff;color:var(--ink)}
+.seg{display:flex;width:max-content;margin:0 auto 12px;background:rgba(255,255,255,.3);border-radius:99px;padding:3px}
+.seg button{background:none;color:#fff;border:0;padding:6px 16px;font-size:13px}.seg button.on{background:#fff;color:#7b6ec4}
+html.dk{--bg:#1b1824;--card:#26222f;--ink:#ece9f5;--mut:#a29db6;--acc:#a99be8;--acc2:#5ec59a;--line:#37324a;color-scheme:dark;background:linear-gradient(180deg,#1f1b2a 0%,#15121d 100%)}
+html.dk .hero{background:linear-gradient(180deg,#5b4fa0,#7b6ec4)}
+html.dk .hcard,html.dk .wd1{background:#26222f}
+html.dk .wd1.sel{background:var(--acc);border-color:var(--acc)}
+html.dk .tabs{background:#211d2b;border-top-color:#37324a}
+html.dk .st.a{background:#2c2742}html.dk .st.b{background:#22303f}html.dk .st.c{background:#3a2c26}
+html.dk .slot{background:linear-gradient(135deg,#6a5cc0,#8678d6);box-shadow:none}
+html.dk .slot .sm.pri{color:#5b4fa0}
+html.dk .slot.wd{background:linear-gradient(135deg,#2d5a49,#3b7761);color:var(--ink);box-shadow:none}
+html.dk .slot.wd .mut{color:#cfe9dd}html.dk .slot.wd .time,html.dk .slot.wd .st2{color:#9ee6c4}
+html.dk .slot.wd .av,html.dk .slot.wd .sm{background:#26222f;color:#9ee6c4}
+</style>
+</head>
+<body>
+<div class="hero"><div class="seg"><button data-m="light">☀️ Açık</button><button data-m="dark">🌙 Koyu</button></div><div class="ht">📺 Nostalji TV</div><div class="hs">Merhaba 👋</div><div class="hb">Bu akşam ne izliyoruz?</div><div class="hcard"><div id="hc" class="mut"></div><button id="hg" class="pri">✦ BU AKŞAMA GİT</button></div></div>
+<div class="tabs"><button id="t1" class="on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>Takvim</button><button id="t2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M3 8l3-4h4L7 8M11 8l3-4h4l-3 4"/></svg>Kütüphane</button></div>
+<div id="v1"></div>
+<div id="v2" hidden></div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let S={items:[],days:{},end:240,log:[]};
+try{const r=localStorage.getItem('nostalji-tv');if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
+const save=()=>{try{localStorage.setItem('nostalji-tv',JSON.stringify(S))}catch(e){}};
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const hm=m=>{m=m%1440;return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0')};
+const today=iso(new Date());
+let armed=null,adding=null,opened=null,monthOpen=false;let cur=new Date();cur.setDate(1);let sel=today;let tab=1;
+const MONTHS=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+
+const linkOf=i=>{const p=((i.info&&i.info.platforms)||[]).find(p=>p.url);return p?`<a class="tag free" href="${esc(p.url)}" target="_blank" rel="noopener">▶ İzle</a>`:''};
+function units(){
+  const u=[];
+  S.items.filter(i=>!i.done).forEach(i=>{
+    if(i.type==='film')u.push({i,label:i.title,len:i.len});
+    else for(let e=i.watched+1;e<=i.eps;e++)u.push({i,label:i.title+' · Böl. '+e,len:i.len,ep:e});
+  });
+  return u;
+}
+function weekHtml(P){const d=new Date(sel+'T12:00'),dow=(d.getDay()+6)%7,s=new Date(d);s.setDate(d.getDate()-dow);const dn=['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'];let h=`<div class="wk-h"><button class="sm" id="wp">‹</button><b>${MONTHS[d.getMonth()]}, ${d.getFullYear()}</b><button class="sm" id="wn">›</button><button class="sm" id="mt">${monthOpen?'Ayı gizle ▴':'Ayı göster ▾'}</button></div><div class="wk">`;for(let n=0;n<7;n++){const x=new Date(s);x.setDate(s.getDate()+n);const k=iso(x),c=(P[k]||[]).length+S.log.filter(l=>l.date===k).length;h+=`<button class="wd1 ${k===sel?'sel':''}" data-k="${k}"><b>${x.getDate()}</b><span>${dn[n]}</span><i>${'•'.repeat(Math.min(c,3))}</i></button>`}return h+'</div>'}
+const avOf=i=>i.poster?`<img src="${i.poster}" alt="">`:esc((i.title||'?').trim().charAt(0).toUpperCase());
+function statsHtml(){let tot=0,w=0,rem=0;S.items.forEach(i=>{const T=i.type==='film'?1:i.eps,W=i.done?T:(i.type==='film'?0:i.watched);tot+=T;w+=W;rem+=(T-W)*i.len});return `<div class="stats"><div class="st a"><b>${S.items.length}</b><span>Başlık</span></div><div class="st b"><b>${w}/${tot}</b><span>İzlenen</span></div><div class="st c"><b>${Math.round(rem/60)}</b><span>Kalan saat</span></div></div>`}
+function unitsOf(i){const u=[];if(i.type==='film')u.push({i,label:i.title,len:i.len});else for(let e=i.watched+1;e<=i.eps;e++)u.push({i,label:i.title+' · Böl. '+e,len:i.len,ep:e});return u}
+function plan(){
+  const Q=S.items.map(i=>i.done?[]:unitsOf(i)),P={};let r=0;const d=new Date();
+  for(let n=0;n<400&&Q.some(q=>q.length);n++){
+    const k=iso(d);const cap=(S.days[k]!==undefined)?S.days[k]:S.end;
+    const lg=S.log.filter(l=>l.date===k);if(lg.length){const x=S.items.findIndex(z=>z.id===lg[lg.length-1].id);if(x>=0)r=x+1}const L=[];let t=lg.reduce((a,l)=>a+l.len+5,0);
+    while(cap>0&&Q.some(q=>q.length)){while(!Q[r%Q.length].length)r++;const q=Q[r%Q.length],u=q[0];if(t>0&&t+u.len>cap+20)break;L.push({...u,start:1200+t,end:1200+t+u.len});t+=u.len+5;q.shift();r++}
+    P[k]=L;d.setDate(d.getDate()+1);
+  }
+  return P;
+}
+function renderCal(){
+  const P=plan(),y=cur.getFullYear(),m=cur.getMonth();
+  const first=(new Date(y,m,1).getDay()+6)%7,days=new Date(y,m+1,0).getDate();
+  let h=weekHtml(P)+`<div class="row" style="margin-bottom:8px"${monthOpen?'':' hidden'}><button id="pv">‹</button><b class="grow" style="text-align:center">${MONTHS[m]} ${y}</b><button id="nx">›</button></div><div class="grid"${monthOpen?'':' hidden'}>`;
+  ['Pt','Sa','Ça','Pe','Cu','Ct','Pz'].forEach(x=>h+=`<div class="dh">${x}</div>`);
+  for(let i=0;i<first;i++)h+='<div></div>';
+  for(let d=1;d<=days;d++){
+    const k=iso(new Date(y,m,d)),L=P[k]||[],w=S.log.filter(l=>l.date===k).length;
+    h+=`<button class="day ${k===sel?'sel':''} ${k===today?'today':''} ${k<today?'pass':''}" data-k="${k}"><b>${d}</b><small>${w?'✓'+w+' ':''}${L.length?L.length+' yayın':(S.days[k]===0?'kapalı':'')}</small></button>`;
+  }
+  h+='</div>';
+  const W=S.log.filter(l=>l.date===sel),L=P[sel]||[],cap=(S.days[sel]!==undefined)?S.days[sel]:S.end;
+  const dt=new Date(sel+'T12:00');
+  h+=`<div class="card" style="margin-top:12px"><div class="row"><b class="grow">${dt.getDate()} ${MONTHS[dt.getMonth()]} akşamı</b><select id="endsel" style="width:auto"><option value="240">20:00 – 00:00</option><option value="300">20:00 – 01:00</option><option value="360">20:00 – 02:00</option><option value="0">Bu akşam yok</option></select></div>`;
+  if(!L.length&&!W.length)h+=`<p class="mut">${S.items.some(i=>!i.done)?'Bu akşam yayın yok.':'Kütüphanene film veya dizi ekle, yayın akışı otomatik oluşsun.'}</p>`;
+  W.forEach(l=>{h+=`<div class="slot wd"><div class="av">✓</div><div class="grow"><div><b>${esc(l.label)}</b></div><div class="mut"><span class="time">${hm(l.start)}</span> · ${l.len} dk </div></div><div class="rt"><span class="st2">İZLENDİ</span><button class="sm" data-undo="${l.lid}">↩ Geri al</button></div></div>`});L.forEach(s=>{h+=`<div class="slot"><div class="av">${avOf(s.i)}</div><div class="grow"><div class="mut">${s.i.type==='film'?'Film':'Dizi'}</div><div><b>${esc(s.label)}</b></div><div class="mut"><span class="time">${hm(s.start)}</span> · ${s.len} dk</div></div><div class="rt"><span class="st2 or">SIRADA</span>${linkOf(s.i)}<button class="sm pri" data-w="${s.i.id}" data-e="${s.ep||0}" data-s="${s.start}">İzledim ✓</button></div></div>`});
+  if(L.length)h+=`<div class="mut" style="margin-top:6px">Bitiş: ~${hm(L[L.length-1].end)}</div>`;
+  h+='</div>';
+  $('#v1').innerHTML=h;
+  $('#endsel').value=String(cap);
+  $('#wp').onclick=()=>{const d=new Date(sel+'T12:00');d.setDate(d.getDate()-7);sel=iso(d);cur=new Date(d.getFullYear(),d.getMonth(),1);renderCal()};$('#wn').onclick=()=>{const d=new Date(sel+'T12:00');d.setDate(d.getDate()+7);sel=iso(d);cur=new Date(d.getFullYear(),d.getMonth(),1);renderCal()};$('#mt').onclick=()=>{monthOpen=!monthOpen;renderCal()};document.querySelectorAll('.wd1').forEach(b=>b.onclick=()=>{sel=b.dataset.k;cur=new Date(sel+'T12:00');cur.setDate(1);renderCal()});
+  $('#pv').onclick=()=>{cur.setMonth(cur.getMonth()-1);renderCal()};
+  $('#nx').onclick=()=>{cur.setMonth(cur.getMonth()+1);renderCal()};
+  document.querySelectorAll('.day').forEach(b=>b.onclick=()=>{sel=b.dataset.k;renderCal()});
+  $('#endsel').onchange=e=>{const v=+e.target.value;if(v===S.end)delete S.days[sel];else S.days[sel]=v;save();renderCal()};
+  document.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>watch(b.dataset.w,+b.dataset.e,+b.dataset.s));document.querySelectorAll('[data-undo]').forEach(b=>b.onclick=()=>undo(b.dataset.undo));
+}
+function undo(lid){const l=S.log.find(x=>x.lid===lid);if(!l)return;const i=S.items.find(x=>x.id===l.id);if(i){i.watched=l.prev;i.done=l.prevDone}S.log=S.log.filter(x=>x.lid!==lid);save();render()}
+function watch(id,ep,s){
+  const i=S.items.find(x=>x.id===id);if(!i)return;
+  S.log.push({lid:'l'+Date.now(),date:sel,id,label:i.title+(ep?' · Böl. '+ep:''),start:s,len:i.len,prev:i.watched,prevDone:i.done});if(i.type==='film')i.done=true;else{i.watched=Math.max(i.watched,ep);if(i.watched>=i.eps)i.done=true}
+  save();render();
+}
+function platHtml(i){
+  const ps=(i.info&&i.info.platforms)||[];
+  let h='<div style="margin-top:6px">';
+  ps.forEach((p,k)=>{const f=/ücretsiz/i.test(p.price);h+=`${p.url?`<a class="tag ${f?'free':''}" href="${esc(p.url)}" target="_blank" rel="noopener">▶ ${esc(p.name)} · ${esc(p.price)}</a>`:`<span class="tag ${f?'free':''}">${esc(p.name)} · ${esc(p.price)}</span>`}<span class="tag" data-pr="${i.id}:${k}" style="cursor:pointer" title="Platformu kaldır">✕</span>`});
+  if(!ps.length)h+='<span class="mut">Henüz platform yok. "➕ Platform ekle" ile adını ve linkini gir.</span>';
+  return h+'</div>';
+}
+function renderLib(){
+  let h=statsHtml()+`<div class="card"><b>Yeni ekle</b><div class="row" style="margin-top:8px"><input id="nt" class="grow" placeholder="Film veya dizi adı"><select id="ny" style="width:auto"><option value="dizi">Dizi</option><option value="film">Film</option></select></div><div class="row" style="margin-top:8px"><input id="nyr" placeholder="Yıl (ops.)" inputmode="numeric" class="grow"><input id="nl" placeholder="Süre dk (ops.)" inputmode="numeric" class="grow"><input id="ne" placeholder="Bölüm (ops.)" inputmode="numeric" class="grow"></div><button id="add" class="pri" style="width:100%;margin-top:8px">Ekle</button><div class="mut" style="margin-top:6px">Süreyi boş bırakırsan dizi 45 dk, film 100 dk sayılır. Bölüm sayısını boş bırakırsan 20 sayılır.</div></div>`;
+  S.items.forEach((i,n)=>{
+    const pct=i.type==='film'?(i.done?100:0):Math.round(i.watched/Math.max(i.eps,1)*100);
+    h+=`<div class="card ${i.done?'done':''}"><div class="row">${i.poster?`<img class="poster" src="${i.poster}" alt="">`:''}<div class="grow"><b>${esc(i.title)}</b> <span class="mut">${i.year||''}</span><div class="mut">${i.type==='film'?'Film':'Dizi'} · ${i.len} dk${i.type==='dizi'?' · '+i.watched+'/'+i.eps+' bölüm':''}${i.done?' · izlendi ✓':''}</div></div><button class="sm" data-u="${n}">↑</button><button class="sm" data-d="${n}">↓</button></div><div class="bar"><i style="width:${pct}%"></i></div>${i.busy?'<div class="mut" style="margin-top:6px">Taranıyor…</div>':platHtml(i)}${adding===i.id?`<div class="row" style="margin-top:8px"><input id="pn" class="grow" placeholder="Platform adı (örn. YouTube)"><input id="pu" class="grow" placeholder="Link (isteğe bağlı) https://..." inputmode="url" style="flex-basis:100%"><button class="sm" data-pf="${i.id}:1">Ücretsiz</button><button class="sm" data-pf="${i.id}:0">Ücretli</button></div>`:''}<div class="row" style="margin-top:8px"><button class="sm" data-g="${i.id}">🖼 Poster</button><button class="sm" data-p="${i.id}">➕ Platform ekle</button><button class="sm" data-x="${i.id}">${i.done?'Geri al':'İzlendi'}</button><button class="sm" data-r="${i.id}">${armed===i.id?'Emin misin? Sil':'Sil'}</button></div></div>`;
+  });
+  if(!S.items.length)h+='<p class="mut">Henüz bir şey eklemedin. Sıra, yayın sırasını belirler: yukarıdaki önce yayınlanır.</p>';
+  h+=`<div class="card"><b>Yedek</b><div class="mut" style="margin-top:4px">Veriler bu tarayıcıda saklanır. Başka cihaza geçerken ya da tarayıcı verilerini silmeden önce yedeği indir.</div><div class="row" style="margin-top:8px"><button class="sm" id="bk">⬇ Yedeği indir</button><button class="sm" id="rs">⬆ Yedekten yükle</button></div></div>`;
+  $('#v2').innerHTML=h;
+  $('#bk').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'}));a.download='nostalji-tv-yedek-'+today+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+  $('#rs').onclick=()=>{const f=document.createElement('input');f.type='file';f.accept='.json,application/json';f.onchange=()=>{const file=f.files[0];if(!file)return;file.text().then(t=>{try{const d=JSON.parse(t);if(!Array.isArray(d.items))throw 0;if(!confirm(d.items.length+' kayıt yüklenecek, mevcut veriler değişecek. Devam?'))return;S=Object.assign({items:[],days:{},end:240,log:[]},d);save();applyMode();render()}catch(e){alert('Bu dosya Nostalji TV yedeği değil.')}})};f.click()};
+  $('#add').onclick=()=>{
+    const t=$('#nt').value.trim();if(!t)return;
+    const ty=$('#ny').value,l=+$('#nl').value,e=+$('#ne').value;
+    const it={id:'i'+Date.now(),title:t,type:ty,year:+$('#nyr').value||0,len:l||(ty==='film'?100:45),eps:ty==='film'?1:(e||20),watched:0,done:false,manualLen:!!l,manualEps:!!e};
+    S.items.push(it);adding=it.id;save();render();
+  };
+  const q=(a,f)=>document.querySelectorAll('['+a+']').forEach(b=>b.onclick=()=>f(b.getAttribute(a)));
+  q('data-u',n=>{n=+n;if(n>0){[S.items[n-1],S.items[n]]=[S.items[n],S.items[n-1]];save();render()}});
+  q('data-d',n=>{n=+n;if(n<S.items.length-1){[S.items[n+1],S.items[n]]=[S.items[n],S.items[n+1]];save();render()}});
+  q('data-pr',v=>{const [id,k]=v.split(':');const i=S.items.find(x=>x.id===id);if(!i||!i.info)return;i.info.platforms.splice(+k,1);save();render()});
+  q('data-g',id=>{const f=document.createElement('input');f.type='file';f.accept='image/*';f.onchange=()=>{const file=f.files[0];if(!file)return;const rd=new FileReader();rd.onload=()=>{const img=new Image();img.onload=()=>{const w=240,h=Math.round(img.height*w/img.width);const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);const i=S.items.find(x=>x.id===id);i.poster=c.toDataURL('image/jpeg',.75);save();render()};img.src=rd.result};rd.readAsDataURL(file)};f.click()});
+  q('data-pf',v=>{const [id,f]=v.split(':');const n=($('#pn').value||'').trim();if(!n)return;let u=($('#pu').value||'').trim();if(u&&!/^https?:\/\//i.test(u))u='https://'+u;const i=S.items.find(x=>x.id===id);i.info=i.info||{platforms:[],note:''};i.info.platforms.unshift({name:n,price:f==='1'?'ücretsiz':'abonelik',manual:true,url:u});adding=null;save();render()});
+  q('data-p',id=>{adding=id;render();return;const i=S.items.find(x=>x.id===id);const n=prompt('Platform adı (örn. YouTube):');if(!n)return;const f=confirm('Ücretsiz mi? Tamam = ücretsiz, İptal = ücretli');i.info=i.info||{platforms:[],note:''};i.info.platforms.unshift({name:n,price:f?'ücretsiz':'abonelik',manual:true});save();render()});
+  q('data-x',id=>{const i=S.items.find(x=>x.id===id);i.done=!i.done;if(i.done&&i.type==='dizi')i.watched=i.eps;else if(!i.done)i.watched=0;save();render()});
+  q('data-r',id=>{if(armed!==id){armed=id;render();return}armed=null;{S.items=S.items.filter(x=>x.id!==id);save();render()}});
+}
+function render(){tab===1?renderCal():renderLib();hero()}
+function hero(){const P=plan(),L=P[today]||[],W=S.log.filter(l=>l.date===today);$('#hc').textContent='Bu akşam '+(W.length?W.length+' izlendi, ':'')+L.length+' yayın sırada'}
+function show(n){tab=n;$('#v1').hidden=n!==1;$('#v2').hidden=n!==2;$('#t1').className=n===1?'on':'';$('#t2').className=n===2?'on':'';render()}
+$('#t1').onclick=()=>show(1);$('#t2').onclick=()=>show(2);
+const PAL={lavanta:{bg:'#e9e4f7',card:'#ffffff',ink:'#2b2748',mut:'#8a84a8',acc:'#7a67d8',acc2:'#2fa37f',line:'#e3def5',cs:'light'},oto:null,mavi:{bg:'#0f1722',card:'#182233',ink:'#e6eefb',mut:'#8fa3c0',acc:'#38bdf8',acc2:'#a3e635',line:'#2a3a52',cs:'dark'},orman:{bg:'#101a14',card:'#17251c',ink:'#e8f2e6',mut:'#8fae98',acc:'#4ade80',acc2:'#fbbf24',line:'#25382b',cs:'dark'},mor:{bg:'#1a1024',card:'#251633',ink:'#f3e8ff',mut:'#b197cc',acc:'#e879f9',acc2:'#67e8f9',line:'#3a2552',cs:'dark'},gul:{bg:'#fbefef',card:'#fffafa',ink:'#3a1d24',mut:'#8a6a72',acc:'#be185d',acc2:'#0e7490',line:'#ecd3d8',cs:'light'},kirmizi:{bg:'#120d0d',card:'#1f1515',ink:'#f5e9e4',mut:'#b09a92',acc:'#ef4444',acc2:'#facc15',line:'#3b2626',cs:'dark'}};
+const PN={lavanta:'Lavanta',oto:'Nostalji (otomatik)',mavi:'Gece mavisi',orman:'Orman',mor:'Retro mor',gul:'Gül',kirmizi:'Sinema kırmızısı'};
+function applyTheme(){const r=document.documentElement,p=PAL[S.theme||'lavanta'];['bg','card','ink','mut','acc','acc2','line'].forEach(k=>p?r.style.setProperty('--'+k,p[k]):r.style.removeProperty('--'+k));r.style.colorScheme=p?p.cs:''}
+function renderPal(){$('#pal').innerHTML=Object.keys(PN).map(k=>`<button class="sm ${(S.theme||'lavanta')===k?'on':''}" data-th="${k}"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:-1px;background:${PAL[k]?PAL[k].acc:'#c2410c'}"></span> ${PN[k]}</button>`).join('');document.querySelectorAll('[data-th]').forEach(b=>b.onclick=()=>{S.theme=b.dataset.th;save();applyTheme();renderPal()})}
+
+
+function applyMode(){const dk=S.mode==='dark';document.documentElement.classList.toggle('dk',dk);document.querySelectorAll('.seg button').forEach(b=>b.classList.toggle('on',b.dataset.m===(dk?'dark':'light')));const m=document.querySelector('meta[name=theme-color]');if(m)m.content=dk?'#1f1b2a':'#e9e7ee'}
+document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{S.mode=b.dataset.m;save();applyMode()});applyMode();
+$('#hg').onclick=()=>{sel=today;cur=new Date();cur.setDate(1);show(1)};
+show(S.items.length?1:2);
+if('serviceWorker' in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script>
+</body>
+</html>
