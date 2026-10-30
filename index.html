@@ -99,8 +99,17 @@ html.dk .slot .sm.pri{color:#5b4fa0}
 html.dk .slot.wd{background:linear-gradient(135deg,#2d5a49,#3b7761);color:var(--ink);box-shadow:none}
 html.dk .slot.wd .mut{color:#cfe9dd}html.dk .slot.wd .time,html.dk .slot.wd .st2{color:#9ee6c4}
 html.dk .slot.wd .av,html.dk .slot.wd .sm{background:#26222f;color:#9ee6c4}
-#lock{position:fixed;inset:0;z-index:100;overflow:auto;display:flex;align-items:safe center;justify-content:center;padding:20px;background:linear-gradient(180deg,#b7aaee,#e9e4f7)}
-html.dk #lock{background:linear-gradient(180deg,#5b4fa0,#1f1b2a)}
+/* Ahşap kaplama: eski tüplü televizyon kasası gibi ceviz damarlı yüzeyler */
+:root{--acc:#9a6235;--wood:repeating-linear-gradient(177deg,rgba(0,0,0,.10) 0 1px,transparent 1px 7px),repeating-linear-gradient(182deg,rgba(255,220,170,.07) 0 2px,transparent 2px 13px),repeating-linear-gradient(179deg,rgba(60,30,10,.12) 0 3px,transparent 3px 23px),radial-gradient(ellipse 40% 9% at 30% 40%,rgba(50,25,8,.25),transparent 70%),linear-gradient(180deg,#9c6a3e,#7a4b27);--wood-edge:inset 0 1px 0 rgba(255,225,180,.25),inset 0 -2px 0 rgba(40,20,5,.35)}
+html.dk{--bg:#1c1814;--card:#28211b;--line:#3d3229;--mut:#ab9d8c;background:linear-gradient(180deg,#221c16 0%,#16120e 100%)}
+html.dk .hcard,html.dk .wd1{background:#28211b}html.dk .tabs{background:#221c16;border-top-color:#3d3229}
+html.dk{--acc:#d39a62;--wood:repeating-linear-gradient(177deg,rgba(0,0,0,.16) 0 1px,transparent 1px 7px),repeating-linear-gradient(182deg,rgba(255,210,150,.05) 0 2px,transparent 2px 13px),repeating-linear-gradient(179deg,rgba(30,12,2,.18) 0 3px,transparent 3px 23px),radial-gradient(ellipse 40% 9% at 30% 40%,rgba(20,8,0,.3),transparent 70%),linear-gradient(180deg,#6e4626,#4e2f17)}
+.hero,html.dk .hero,.slot,html.dk .slot,.wd1.sel,html.dk .wd1.sel,.day.sel,button.on,button.pri,.hcard button{background:var(--wood);border-color:transparent;color:#fff6e8;box-shadow:var(--wood-edge),0 4px 12px rgba(90,50,20,.25)}
+.hero{box-shadow:var(--wood-edge)}
+.slot .sm.pri,html.dk .slot .sm.pri{background:#fff6e8;color:#6e4424}
+.seg button.on{color:#7a4b27}
+.tabs button.on{background:none;box-shadow:none;color:var(--acc)}
+#lock{position:fixed;inset:0;z-index:100;overflow:auto;display:flex;align-items:safe center;justify-content:center;padding:20px;background:var(--wood)}
 #lock .card{width:100%;max-width:340px;text-align:center}
 #lock img{width:84px;height:84px;border-radius:22px;margin:4px auto 6px;display:block}
 #lock input{margin-top:8px}
@@ -247,8 +256,8 @@ $('#lf').onsubmit=async e=>{
   unlock();
 };
 $('#lr').onclick=()=>{if(confirm('Şifreyi sıfırlamak için bu cihazdaki tüm diziler ve takvim silinir. Yedeğin varsa sonra "Yedekten yükle" ile geri getirebilirsin. Devam?')&&confirm('Emin misin? Bu geri alınamaz.')){localStorage.removeItem(AK);localStorage.removeItem('nostalji-tv');location.reload()}};
-let signedIn=false;try{const f=localStorage.getItem('nostalji-tv-in');signedIn=f==='admin'||(f==='1'&&!!getAuth())}catch(e){}
-if(signedIn)unlock();else lockUi();
+let signedIn=null;try{const f=localStorage.getItem('nostalji-tv-in');if(f==='admin'||(f==='1'&&getAuth()))signedIn=f}catch(e){}
+if(signedIn)unlock(signedIn);else lockUi();
 if('serviceWorker' in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
 </body>
