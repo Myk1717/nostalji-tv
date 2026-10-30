@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="color-scheme" content="light"><meta name="theme-color" content="#e9e7ee"><title>Nostalji TV</title>
+<meta name="color-scheme" content="light"><meta name="theme-color" content="#9c6a3e"><title>Nostalji TV</title>
 <link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" href="favicon.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Nostalji TV"><meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -108,7 +108,8 @@ html.dk{--acc:#d39a62;--wood:repeating-linear-gradient(177deg,rgba(0,0,0,.16) 0 
 .hero{box-shadow:var(--wood-edge)}
 .slot .sm.pri,html.dk .slot .sm.pri{background:#fff6e8;color:#6e4424}
 .seg button.on{color:#7a4b27}
-.tabs button.on{background:none;box-shadow:none;color:var(--acc)}
+.tabs,html.dk .tabs{background:var(--wood);border-top:0;box-shadow:inset 0 2px 0 rgba(255,225,180,.25),0 -4px 14px rgba(60,30,10,.25)}
+.tabs button{color:rgba(255,240,220,.6)}.tabs button.on{background:none;box-shadow:none;color:#fff6e8}
 #lock{position:fixed;inset:0;z-index:100;overflow:auto;display:flex;align-items:safe center;justify-content:center;padding:20px;background:var(--wood)}
 #lock .card{width:100%;max-width:340px;text-align:center}
 #lock img{width:84px;height:84px;border-radius:22px;margin:4px auto 6px;display:block}
@@ -235,7 +236,7 @@ function applyTheme(){const r=document.documentElement,p=PAL[S.theme||'lavanta']
 function renderPal(){$('#pal').innerHTML=Object.keys(PN).map(k=>`<button class="sm ${(S.theme||'lavanta')===k?'on':''}" data-th="${k}"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:-1px;background:${PAL[k]?PAL[k].acc:'#c2410c'}"></span> ${PN[k]}</button>`).join('');document.querySelectorAll('[data-th]').forEach(b=>b.onclick=()=>{S.theme=b.dataset.th;save();applyTheme();renderPal()})}
 
 
-function applyMode(){const dk=S.mode==='dark';document.documentElement.classList.toggle('dk',dk);document.querySelectorAll('.seg button').forEach(b=>b.classList.toggle('on',b.dataset.m===(dk?'dark':'light')));const m=document.querySelector('meta[name=theme-color]');if(m)m.content=dk?'#1f1b2a':'#e9e7ee'}
+function applyMode(){const dk=S.mode==='dark';document.documentElement.classList.toggle('dk',dk);document.querySelectorAll('.seg button').forEach(b=>b.classList.toggle('on',b.dataset.m===(dk?'dark':'light')));const m=document.querySelector('meta[name=theme-color]');if(m)m.content=dk?'#6e4626':'#9c6a3e'}
 document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{S.mode=b.dataset.m;save();applyMode()});applyMode();
 $('#hg').onclick=()=>{sel=today;cur=new Date();cur.setDate(1);show(1)};
 // Giriş kilidi: kullanıcı adı sabit, şifre ilk girişte belirlenir ve bu cihazda özetlenmiş (PBKDF2) olarak saklanır.
