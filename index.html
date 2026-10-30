@@ -230,20 +230,23 @@ document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{S.mode=b.data
 $('#hg').onclick=()=>{sel=today;cur=new Date();cur.setDate(1);show(1)};
 // Giriş kilidi: kullanıcı adı sabit, şifre ilk girişte belirlenir ve bu cihazda özetlenmiş (PBKDF2) olarak saklanır.
 const USER='jpog',AK='nostalji-tv-auth';
+// Yönetici girişi: her cihazda çalışır, Serhat'ın şifresine ve verilerine dokunmaz. Şifrenin sadece özeti burada.
+const ADMIN={user:'admin',salt:'DOCRCOKiBdcS2q2TeVG/OA==',hash:'cbkuKUPRisM9annSBnO5xiAH7zeIdNqWNbdP+EzAqt0='};
 const b64=a=>btoa(String.fromCharCode(...new Uint8Array(a)));
 async function hashPw(pw,salt){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveBits']);return b64(await crypto.subtle.deriveBits({name:'PBKDF2',salt:new TextEncoder().encode(salt),iterations:150000,hash:'SHA-256'},k,256))}
 function getAuth(){try{return JSON.parse(localStorage.getItem(AK))}catch(e){return null}}
 function lockUi(){const first=!getAuth();$('#lt').textContent=first?'İlk giriş: kendine bir şifre belirle.':'Hoş geldin, giriş yap.';$('#lp').autocomplete=first?'new-password':'current-password';$('#lp2').hidden=!first;$('#lb').textContent=first?'Şifreyi kaydet ve gir':'Giriş';$('#lr').hidden=first;$('#le').textContent=''}
-function unlock(){try{localStorage.setItem('nostalji-tv-in','1')}catch(e){}$('#lock').remove();show(S.items.length?1:2)}
+function unlock(who){try{localStorage.setItem('nostalji-tv-in',who||'1')}catch(e){}$('#lock').remove();show(S.items.length?1:2)}
 $('#lf').onsubmit=async e=>{
   e.preventDefault();const u=$('#lu').value.trim().toLowerCase(),p=$('#lp').value,a=getAuth(),er=t=>{$('#le').textContent=t};
+  if(u===ADMIN.user){if(await hashPw(p,ADMIN.salt)!==ADMIN.hash){$('#lp').value='';return er('Şifre yanlış.')}return unlock('admin')}
   if(u!==USER)return er('Kullanıcı adı yanlış.');
   if(!a){if(p.length<4)return er('Şifre en az 4 karakter olsun.');if(p!==$('#lp2').value)return er('İki şifre aynı değil.');const salt=b64(crypto.getRandomValues(new Uint8Array(16)));localStorage.setItem(AK,JSON.stringify({salt,hash:await hashPw(p,salt)}));return unlock()}
   if(await hashPw(p,a.salt)!==a.hash){$('#lp').value='';return er('Şifre yanlış.')}
   unlock();
 };
 $('#lr').onclick=()=>{if(confirm('Şifreyi sıfırlamak için bu cihazdaki tüm diziler ve takvim silinir. Yedeğin varsa sonra "Yedekten yükle" ile geri getirebilirsin. Devam?')&&confirm('Emin misin? Bu geri alınamaz.')){localStorage.removeItem(AK);localStorage.removeItem('nostalji-tv');location.reload()}};
-let signedIn=false;try{signedIn=localStorage.getItem('nostalji-tv-in')==='1'&&!!getAuth()}catch(e){}
+let signedIn=false;try{const f=localStorage.getItem('nostalji-tv-in');signedIn=f==='admin'||(f==='1'&&!!getAuth())}catch(e){}
 if(signedIn)unlock();else lockUi();
 if('serviceWorker' in navigator&&location.protocol!=='file:')navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
